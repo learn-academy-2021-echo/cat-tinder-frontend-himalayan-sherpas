@@ -22,6 +22,7 @@ export default class App extends Component {
           <Route path="/catnew" component={CatNew} />
           <Route path="/catedit" component={CatEdit} />
           <Route component={NotFound} />
+          <h1>learn react</h1>
         </Switch>
         <Footer />
       </Router>
