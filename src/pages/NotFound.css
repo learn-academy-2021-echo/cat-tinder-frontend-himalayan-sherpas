@@ -1,0 +1,12 @@
+.Not_Found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(75vh - 65px);
+  padding-top: 75px;
+}
+
+.Not_Found img {
+  height: calc(70vh - 65px);
+}
