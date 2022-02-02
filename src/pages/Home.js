@@ -4,7 +4,8 @@ export default class Home extends Component {
   render() {
     return (
       <>
-        <h1>Home Component</h1>
+        <h1>Welcome to KatNip!</h1>
+        <img src="http://placehold.it/" alt="place-holder"></img>
       </>
     );
   }
