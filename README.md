@@ -1,70 +1,182 @@
-# Getting Started with Create React App
+# Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```Shell
+$ yarn create react-app cat-tinder-frontend
+$ cd cat-tinder-frontend
+$ git remote add origin https://github.com/learn-academy-2021-echo/cat-tinder-frontend-himalayan-sherpas.git
+### for some reason, this was NOT necessary on my machine
+$ git checkout -b main
+$ git status
+$ git add .
+$ git commit -m 'initial commit'
+$ git push origin main
+###
+$ yarn start
+```
 
-## Available Scripts
+# Frontend Structure
 
-In the project directory, you can run:
+## Create Directories
 
-### `yarn start`
+```Shell
+$ git checkout -b frontend-structure
+# created components, pages, assets directories
+$ cd src
+$ mkdir components pages assets
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Create Component Files
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```Shell
+$ cd components
+$ touch Header.js Footer.js
+```
 
-### `yarn test`
+## Create Pages Files
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```Shell
+$ cd ..
+$ cd pages
+$ touch Home.js CatIndex.js CatShow.js CatNew.js CatEdit.js NotFound.js
+```
 
-### `yarn build`
+```JavaScript
+import React, { Component } from "react";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import CatEdit from "./pages/CatEdit";
+import CatIndex from "./pages/CatIndex";
+import CatNew from "./pages/CatNew";
+import CatShow from "./pages/CatShow";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+export default class App extends Component {
+  render() {
+    return (
+      <>
+        <Header />
+        <Home />
+        <CatIndex />
+        <CatShow />
+        <CatNew />
+        <CatEdit />
+        <NotFound />
+        <Footer />
+      </>
+    );
+  }
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installs
 
-### `yarn eject`
+```Shell
+$ yarn add bootstrap
+$ yarn add reactstrap
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```JavaScript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css' // <== added new import
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Routes
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```Shell
+$ yarn add react-router-dom@5.3.0
+```
 
-## Learn More
+```JavaScript
+import React, { Component } from "react";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import CatEdit from "./pages/CatEdit";
+import CatIndex from "./pages/CatIndex";
+import CatNew from "./pages/CatNew";
+import CatShow from "./pages/CatShow";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export default class App extends Component {
+  render() {
+    return (
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/catindex" component={CatIndex} />
+          <Route path="/catshow" component={CatShow} />
+          <Route path="/catnew" component={CatNew} />
+          <Route path="/catedit" component={CatEdit} />
+          <Route component={NotFound} />
+        </Switch>
+        <Footer />
+      </Router>
+    );
+  }
+}
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
 
-### Code Splitting
+## Create Mock Cats
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```Shell
+$ cd ..
+$ touch mockCats.js
+```
 
-### Analyzing the Bundle Size
+```JavaScript
+let cats = [
+  {
+    id: 1,
+    name: "Mittens",
+    age: 5,
+    enjoys: "sunshine and warm spots",
+    image:
+      "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
+  {
+    id: 2,
+    name: "Raisins",
+    age: 4,
+    enjoys: "being queen of the dogs",
+    image:
+      "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1092&q=80",
+  },
+  {
+    id: 3,
+    name: "Toast",
+    age: 1,
+    enjoys: "getting all the attention",
+    image:
+      "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
+];
+export default cats;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```JavaScript
+// App.js
+import cats from "./mockCats";
+```
 
-### Making a Progressive Web App
+## Add UI Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```Shell
+$ cd components
+$ touch Header.css Footer.css
+```
