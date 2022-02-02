@@ -5,9 +5,10 @@ import "../App.css";
 export default class Footer extends Component {
   render() {
     return (
-      <>
-        <h1>Footer Component</h1>
-      </>
+      <footer className="Footer">
+        <h5>Coded by The Himalayan Sherpas</h5>
+        <p>Robert Calpito | Kirk Wang</p>
+      </footer>
     );
   }
 }

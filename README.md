@@ -179,4 +179,7 @@ import cats from "./mockCats";
 ```Shell
 $ cd components
 $ touch Header.css Footer.css
+$ cd ..
+$ cd pages
+$ touch NotFound.css
 ```
