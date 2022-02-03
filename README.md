@@ -367,3 +367,80 @@ constructor(props) {
 ```
 
 ### As a developer, I have test coverage on my index component.
+
+```javascript
+describe("When CatIndex renders mock cats", () => {
+  let catIndex;
+  beforeEach(() => {
+    catIndex = shallow(<CatIndex cats={cats} />);
+  });
+  it("see three names", () => {
+    const renderedCatIndexArray = catIndex
+      .find(".Cat-Name")
+      .map((cat) => cat.text());
+    expect(renderedCatIndexArray).toEqual(["Mittens", "Raisins", "Toast"]);
+  });
+});
+```
+
+### As a developer, I can refactor the show route to pass the param of id for one cat.
+
+```javascript
+import React, { Component } from "react";
+
+export default class CatShow extends Component {
+  render() {
+    const { cat } = this.props;
+    return (
+      <>
+        <h2>Meet {cat.name}!</h2>
+        <p>Age: {cat.age}</p>
+        <p>Enjoys: {cat.enjoys}</p>
+        <img src={cat.image} alt={`${cat.name} Profile Pic`} width="500px" />
+      </>
+    );
+  }
+}
+```
+
+### As a user, I can see a page featuring all the information for one cat.
+
+```javascript
+<h2>Meet {cat.name}!</h2>
+<p>Age: {cat.age}</p>
+<p>Enjoys: {cat.enjoys}</p>
+<img src={cat.image} alt={`${cat.name} Profile Pic`} width="500px" />
+```
+
+### As a user, I can click on a cat name and be taken to a page that shows me all the information about that cat.
+
+```javascript
+<ul>
+  {cats.map((cat) => {
+    return (
+      <NavLink to={`/catshow/${cat.id}`} key={cat.id}>
+        <li className="Cat-Name" key={cat.id}>
+          {cat.name}
+        </li>
+      </NavLink>
+    );
+  })}
+</ul>
+```
+
+### As a developer, I have test coverage on my show component.
+
+```javascript
+describe("When CatShow renders", () => {
+  let catShow;
+  beforeEach(() => {
+    catShow = shallow(<CatShow cat={cat} />);
+  });
+  it("h2, name of cats, should be greater than 6", () => {
+    const renderedCatShow = catShow.find("h2").text().split("").length;
+    expect(cat.map((value) => renderedCatShow + value.name.length)).toEqual([
+      13, 13, 11,
+    ]);
+  });
+});
+```

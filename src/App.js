@@ -27,7 +27,14 @@ export default class App extends Component {
             path="/catindex"
             render={() => <CatIndex cats={this.state.cats}></CatIndex>}
           />
-          <Route path="/catshow" component={CatShow} />
+          <Route
+            path="/catshow/:id"
+            render={(props) => {
+              let id = +props.match.params.id;
+              let cat = this.state.cats.find((cat) => cat.id === id);
+              return <CatShow cat={cat} />;
+            }}
+          />
           <Route path="/catnew" component={CatNew} />
           <Route path="/catedit" component={CatEdit} />
           <Route component={NotFound} />
