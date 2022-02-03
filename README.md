@@ -332,3 +332,38 @@ describe("When Home renders", () => {
   });
 });
 ```
+
+# Read Functionality
+
+## Stories
+
+### As a developer, I can pass the cat mock data in state to my index component.
+
+```javascript
+constructor(props) {
+    super(props);
+    this.state = {
+      cats: cats,
+    };
+  }
+```
+
+```javascript
+<Route
+  path="/catindex"
+  render={() => <CatIndex cats={this.state.cats}></CatIndex>}
+/>
+```
+
+### As a user, I can see a page that lists of all the cat names.
+
+```javascript
+# CatIndex.js
+<ul>
+  {this.props.cats.map((cat) => {
+    return <li key={cat.id}>{cat.name}</li>;
+  })}
+</ul>
+```
+
+### As a developer, I have test coverage on my index component.
