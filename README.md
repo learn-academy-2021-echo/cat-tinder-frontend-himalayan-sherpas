@@ -438,9 +438,9 @@ describe("When CatShow renders", () => {
   });
   it("h2, name of cats, should be greater than 6", () => {
     const renderedCatShow = catShow.find("h2").text().split("").length;
-    expect(cat.map((value) => renderedCatShow + value.name.length)).toEqual([
-      13, 13, 11,
-    ]);
+    cat.map((value) =>
+      expect(renderedCatShow + value.name.length).toBeGreaterThan(6)
+    );
   });
 });
 ```
