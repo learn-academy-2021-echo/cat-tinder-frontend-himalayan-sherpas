@@ -444,3 +444,123 @@ describe("When CatShow renders", () => {
   });
 });
 ```
+
+# Create Functionality
+
+## Create
+
+### As a user, I can fill out a form to add a new cat.
+
+```Javascript
+        <Form>
+          <FormGroup>
+            <Label for="name">Cat Name</Label>
+            <Input
+              type="text"
+              name="name"
+              onChange={this.handleChange}
+              value={this.state.newCat.name}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="age">Age</Label>
+            <Input
+              type="number"
+              name="age"
+              onChange={this.handleChange}
+              value={this.state.newCat.age}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="enjoys">Hobbies</Label>
+            <Input
+              type="text"
+              name="enjoys"
+              onChange={this.handleChange}
+              value={this.state.newCat.enjoys}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="img">Picture</Label>
+            <Input
+              type="text"
+              name="img"
+              onChange={this.handleChange}
+              value={this.state.newCat.img}
+            />
+          </FormGroup>
+          <Button name="submit" onClick={this.handleSubmit}>pet me</Button>
+          {this.state.submitted && <Redirect to="/catindex" />}
+        </Form>
+```
+
+### As a developer, I can store the cat object in state.
+
+```Javascript
+  constructor(props) {
+    super(props);
+    this.state = {
+      newCat: {
+        name: "",
+        age: "",
+        enjoys: "",
+        img: "",
+      },
+      submitted: false,
+    }
+  }
+```
+
+### As a developer, I can pass the cat object to App.js on submit and see the cat object logged in the console
+
+```Javascript
+// CatNew.js
+  handleChange = (e) => {
+    console.log(e.target.value)
+    let { newCat } = this.state
+    newCat[e.target.name] = e.target.value
+    this.setState({ newCat: newCat })
+  }
+
+  handleSubmit = () => {
+    this.props.createCat(this.state.newCat)
+    this.setState({ submitted: true })
+  }
+
+// App.js
+
+  createCat = (cat) => {
+    console.log(cat)
+  }
+
+```
+
+### As a user, I can be routed to the index page after I submit the new cat form.
+
+```Javascript
+{this.state.submitted && <Redirect to="/catindex" />}
+```
+
+### As a developer, I have test coverage on my new page.
+
+```Javascript
+import React from "react";
+import Enzyme, { shallow } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import CatNew from "./CatNew";
+import cat from "../mockCats";
+
+Enzyme.configure({ adapter: new Adapter() });
+
+describe("When catNew renders", () => {
+    let catNew;
+    beforeEach(() => {
+        catNew = shallow(<CatNew />);
+    });
+    it("will display a set of forms to take in name, age, enjoys, and img.", () => {
+        const catNewInput = catNew.find("Input");
+        expect(catNewInput.length).toEqual(4)
+    });
+});
+
+```
