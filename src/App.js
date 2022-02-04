@@ -17,6 +17,11 @@ export default class App extends Component {
       cats: cats,
     };
   }
+
+  createCat = (cat) => {
+    console.log(cat)
+  }
+
   render() {
     return (
       <Router>
@@ -35,7 +40,8 @@ export default class App extends Component {
               return <CatShow cat={cat} />;
             }}
           />
-          <Route path="/catnew" component={CatNew} />
+          <Route path="/catnew"
+            render={() => <CatNew createCat={this.createCat} />} />
           <Route path="/catedit" component={CatEdit} />
           <Route component={NotFound} />
           <h1>learn react</h1>
