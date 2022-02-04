@@ -14,8 +14,8 @@ export default class Header extends Component {
           <NavLink to="/catindex">
             <h6>Matched Cats</h6>
           </NavLink>
-          <NavLink to="/">
-            <h6>Link 2</h6>
+          <NavLink to="/catnew">
+            <h6>Add A Cat</h6>
           </NavLink>
           <NavLink to="/">
             <h6>Link 3</h6>
