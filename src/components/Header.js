@@ -8,7 +8,7 @@ export default class Header extends Component {
     return (
       <nav className="NavBar">
         <NavLink to="/">
-          <h1>KatNip</h1>
+          <h2>KatNip</h2>
         </NavLink>
         <div className="NavBar__Links">
           <NavLink to="/catindex">

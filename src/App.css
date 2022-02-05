@@ -11,6 +11,11 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 100px;
-  height: 120vh;
+  padding-top: 90px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: xx-large;
+  color: var(--background);
 }
