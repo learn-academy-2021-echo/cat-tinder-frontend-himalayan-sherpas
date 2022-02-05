@@ -7,12 +7,13 @@ import "../App.css";
 export default class CatEdit extends Component {
   constructor(props) {
     super(props);
+    let { name, age, enjoys, image } = this.props.cat;
     this.state = {
       updateCat: {
-        name: "",
-        age: "",
-        enjoys: "",
-        img: "",
+        name: name ? name : undefined,
+        age: age ? age : undefined,
+        enjoys: enjoys ? enjoys : undefined,
+        image: image ? image : undefined,
       },
       submitted: false,
     };
@@ -63,12 +64,12 @@ export default class CatEdit extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="img">Picture</Label>
+            <Label for="image">Picture</Label>
             <Input
               type="text"
-              name="img"
+              name="image"
               onChange={this.handleChange}
-              value={this.state.updateCat.img}
+              value={this.state.updateCat.image}
             />
           </FormGroup>
           <Button name="submit" onClick={this.handleSubmit}>

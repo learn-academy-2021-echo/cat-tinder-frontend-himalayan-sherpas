@@ -6,3 +6,11 @@
   --reg-text: #7a9ec1;
   --header-font: Arial;
 }
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  height: 120vh;
+}

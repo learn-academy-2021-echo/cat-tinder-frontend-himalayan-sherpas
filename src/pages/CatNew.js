@@ -12,7 +12,7 @@ export default class CatNew extends Component {
         name: "",
         age: "",
         enjoys: "",
-        img: "",
+        image: "",
       },
       submitted: false,
     };
@@ -32,7 +32,7 @@ export default class CatNew extends Component {
 
   render() {
     return (
-      <>
+      <section>
         <h2>Create A New Cat Profile</h2>
         <Form>
           <FormGroup>
@@ -63,12 +63,12 @@ export default class CatNew extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="img">Picture</Label>
+            <Label for="image">Picture</Label>
             <Input
               type="text"
-              name="img"
+              name="image"
               onChange={this.handleChange}
-              value={this.state.newCat.img}
+              value={this.state.newCat.image}
             />
           </FormGroup>
           <Button name="submit" onClick={this.handleSubmit}>
@@ -76,7 +76,7 @@ export default class CatNew extends Component {
           </Button>
           {this.state.submitted && <Redirect to="/catindex" />}
         </Form>
-      </>
+      </section>
     );
   }
 }
