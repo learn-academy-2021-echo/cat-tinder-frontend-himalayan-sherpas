@@ -1,14 +1,4 @@
-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-}
-
 .cat-profile {
-  /* display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 5fr 1fr; */
   display: flex;
   flex-direction: column;
   background-color: var(--accent);

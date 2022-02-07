@@ -19,8 +19,13 @@ export default class App extends Component {
   }
 
   createCat = (cat) => {
-    console.log(cat)
-  }
+    console.log(cat);
+  };
+
+  updateCat = (cat, id) => {
+    console.log("cat:", cat);
+    console.log("id:", id);
+  };
 
   render() {
     return (
@@ -40,9 +45,18 @@ export default class App extends Component {
               return <CatShow cat={cat} />;
             }}
           />
-          <Route path="/catnew"
-            render={() => <CatNew createCat={this.createCat} />} />
-          <Route path="/catedit" component={CatEdit} />
+          <Route
+            path="/catnew"
+            render={() => <CatNew createCat={this.createCat} />}
+          />
+          <Route
+            path="/catedit/:id"
+            render={(props) => {
+              let id = +props.match.params.id;
+              let cat = this.state.cats.find((cat) => cat.id === id);
+              return <CatEdit updateCat={this.updateCat} cat={cat} />;
+            }}
+          />
           <Route component={NotFound} />
           <h1>learn react</h1>
         </Switch>

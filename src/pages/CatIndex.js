@@ -5,7 +5,7 @@ export default class CatIndex extends Component {
   render() {
     const { cats } = this.props;
     return (
-      <>
+      <section>
         <h1>Matched Cats!</h1>
         <ul>
           {cats.map((cat) => {
@@ -18,7 +18,7 @@ export default class CatIndex extends Component {
             );
           })}
         </ul>
-      </>
+      </section>
     );
   }
 }
