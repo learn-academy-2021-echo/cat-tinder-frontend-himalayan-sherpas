@@ -5,5 +5,32 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   background-blend-mode: darken;
+}
+
+.Home__Content {
+  margin: 4em 4em 4em;
+  max-width: 60em;
+}
+
+.Intro,
+.Intro__p {
+  color: var(--background);
+  font-size: clamp(4em, 6vw, 99px);
+  line-height: 1em;
+  margin: 0.25em 0 0.75em 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Intro__p {
+  color: var(--accent);
+  font-size: clamp(1.5em, 3vw, 68px);
+}
+
+.Intro__p2 {
+  color: var(--accent);
+  font-size: clamp(1em, 1.5vw, 52px);
 }

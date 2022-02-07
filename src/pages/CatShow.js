@@ -20,10 +20,15 @@ export default class CatShow extends Component {
             <h2>Meet {cat.name}!</h2>
             <p>Age: {cat.age}</p>
             <p>Enjoys: {cat.enjoys}</p>
+            <div className="Profile__Buttons">
+              <NavLink to="/catindex">
+                <Button>Back</Button>
+              </NavLink>
+              <NavLink to={`/catedit/${this.props.cat.id}`}>
+                <Button>Edit Cat Profile</Button>
+              </NavLink>
+            </div>
           </div>
-          <NavLink to={`/catedit/${this.props.cat.id}`}>
-            <Button>Edit Cat Profile</Button>
-          </NavLink>
         </div>
       </section>
     );
