@@ -46,7 +46,8 @@ export default class CatNew extends Component {
     return (
       <section>
         <h2>Create A New Cat Profile</h2>
-        <Form>
+        <br />
+        <Form className="Form">
           <FormGroup>
             <Label for="name">Cat Name</Label>
             <Input

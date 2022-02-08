@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { Form, FormGroup, Input, Label, Button, NavLink } from "reactstrap";
+import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 import "./CatEdit.css";
 import "../App.css";
 
@@ -48,9 +48,11 @@ export default class CatEdit extends Component {
 
   render() {
     const { cat } = this.props;
+    const { updateCat, submitted } = this.state;
     return (
       <section>
         <h2>Edit Cat Profile</h2>
+        <br />
         <Form>
           <FormGroup>
             <Label for="name">Cat Name</Label>
@@ -58,7 +60,7 @@ export default class CatEdit extends Component {
               type="text"
               name="name"
               onChange={this.handleChange}
-              value={this.state.updateCat.name}
+              value={updateCat.name}
             />
           </FormGroup>
           <FormGroup>
@@ -68,7 +70,7 @@ export default class CatEdit extends Component {
               name="age"
               min="1"
               onChange={this.handleChange}
-              value={this.state.updateCat.age}
+              value={updateCat.age}
             />
           </FormGroup>
           <FormGroup>
@@ -77,7 +79,7 @@ export default class CatEdit extends Component {
               type="text"
               name="enjoys"
               onChange={this.handleChange}
-              value={this.state.updateCat.enjoys}
+              value={updateCat.enjoys}
             />
           </FormGroup>
           <FormGroup>
@@ -86,7 +88,7 @@ export default class CatEdit extends Component {
               type="text"
               name="image"
               onChange={this.handleChange}
-              value={this.state.updateCat.image}
+              value={updateCat.image}
             />
           </FormGroup>
         </Form>
@@ -98,7 +100,7 @@ export default class CatEdit extends Component {
             Back
           </Button>
         </div>
-        {this.state.submitted && <Redirect to={`/catshow/${cat.id}`} />}
+        {submitted && <Redirect to={`/catshow/${cat.id}`} />}
       </section>
     );
   }
