@@ -20,6 +20,11 @@
   object-fit: cover;
   box-shadow: 16px 16px 8px -10px var(--accent);
   border-radius: 20px;
+  transition: transform 0.5s ease;
+}
+
+.Index__Pic:hover img {
+  transform: scale(1.1);
 }
 
 .Index__Pic p {

@@ -32,7 +32,6 @@ export default class CatShow extends Component {
   };
 
   render() {
-    // console.log(this.handleBackSubmit ? true : false);
     const { cat } = this.props;
     return (
       <section>

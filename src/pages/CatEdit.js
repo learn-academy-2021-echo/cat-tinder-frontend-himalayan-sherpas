@@ -10,24 +10,36 @@ export default class CatEdit extends Component {
     let { name, age, enjoys, image } = this.props.cat;
     this.state = {
       updateCat: {
-        name: name ? name : undefined,
-        age: age ? age : undefined,
-        enjoys: enjoys ? enjoys : undefined,
-        image: image ? image : undefined,
+        name: name ? name : "",
+        age: age ? age : "",
+        enjoys: enjoys ? enjoys : "",
+        image: image ? image : "",
       },
       submitted: false,
     };
   }
 
   handleChange = (e) => {
-    let { updateCat } = this.state;
+    const { updateCat } = this.state;
     updateCat[e.target.name] = e.target.value;
     this.setState({ updateCat: updateCat });
   };
 
   handleSubmit = () => {
-    this.props.updateCat(this.state.updateCat, this.props.cat.id);
-    this.setState({ submitted: true });
+    const { updateCat } = this.state;
+    const filledOut = Object.values(updateCat).every((value) => {
+      return value;
+    });
+    if (filledOut && updateCat.age > 0 && updateCat.enjoys.length >= 10) {
+      this.props.updateCat(updateCat, this.props.cat.id);
+      this.setState({ submitted: true });
+    } else if (updateCat.age < 1) {
+      alert("Age has to be 1 or older");
+    } else if (updateCat.enjoys.length < 10) {
+      alert("Hobbies must be more than 10 or more characters");
+    } else {
+      alert("Please fill out all fields");
+    }
   };
 
   handleBack = () => {
@@ -54,6 +66,7 @@ export default class CatEdit extends Component {
             <Input
               type="number"
               name="age"
+              min="1"
               onChange={this.handleChange}
               value={this.state.updateCat.age}
             />
@@ -68,7 +81,7 @@ export default class CatEdit extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="image">Picture</Label>
+            <Label for="image">Image Link</Label>
             <Input
               type="text"
               name="image"

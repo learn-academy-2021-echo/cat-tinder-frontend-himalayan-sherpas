@@ -12,7 +12,7 @@ export default class Header extends Component {
         <NavLink to="/" style={style}>
           <div className="NavBar__Logo">
             <img src={katnip} alt="katnip logo" height="75px" />
-            <h2 className="NavBar__Logo__Text">KatNip</h2>
+            <h2 className="NavBar__Logo__Text">Katnip</h2>
           </div>
         </NavLink>
         <div className="NavBar__Links">

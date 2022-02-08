@@ -7,10 +7,11 @@ export default class Home extends Component {
     return (
       <section className="Home">
         <div className="Home__Content">
-          <h1 className="Intro">Welcome to KatNip!</h1>
+          <h2 className="Intro">Welcome to</h2>
+          <h1 className="Home__Name">Katnip!</h1>
           <p className="Intro__p">Find a cat for your cat to play with!</p>
           <p className="Intro__p2">
-            (because we all know how cats love playing with each other)
+            <i>because we all know how cats love playing with each other</i>
           </p>
         </div>
       </section>
