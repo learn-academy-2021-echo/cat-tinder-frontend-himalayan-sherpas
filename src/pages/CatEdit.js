@@ -10,31 +10,49 @@ export default class CatEdit extends Component {
     let { name, age, enjoys, image } = this.props.cat;
     this.state = {
       updateCat: {
-        name: name ? name : undefined,
-        age: age ? age : undefined,
-        enjoys: enjoys ? enjoys : undefined,
-        image: image ? image : undefined,
+        name: name ? name : "",
+        age: age ? age : "",
+        enjoys: enjoys ? enjoys : "",
+        image: image ? image : "",
       },
       submitted: false,
     };
   }
 
   handleChange = (e) => {
-    let { updateCat } = this.state;
+    const { updateCat } = this.state;
     updateCat[e.target.name] = e.target.value;
     this.setState({ updateCat: updateCat });
   };
 
   handleSubmit = () => {
-    this.props.updateCat(this.state.updateCat, this.props.cat.id);
+    const { updateCat } = this.state;
+    const filledOut = Object.values(updateCat).every((value) => {
+      return value;
+    });
+    if (filledOut && updateCat.age > 0 && updateCat.enjoys.length >= 10) {
+      this.props.updateCat(updateCat, this.props.cat.id);
+      this.setState({ submitted: true });
+    } else if (updateCat.age < 1) {
+      alert("Age has to be 1 or older");
+    } else if (updateCat.enjoys.length < 10) {
+      alert("Hobbies must be more than 10 or more characters");
+    } else {
+      alert("Please fill out all fields");
+    }
+  };
+
+  handleBack = () => {
     this.setState({ submitted: true });
   };
 
   render() {
     const { cat } = this.props;
+    const { updateCat, submitted } = this.state;
     return (
       <section>
         <h2>Edit Cat Profile</h2>
+        <br />
         <Form>
           <FormGroup>
             <Label for="name">Cat Name</Label>
@@ -42,7 +60,7 @@ export default class CatEdit extends Component {
               type="text"
               name="name"
               onChange={this.handleChange}
-              value={this.state.updateCat.name}
+              value={updateCat.name}
             />
           </FormGroup>
           <FormGroup>
@@ -50,8 +68,9 @@ export default class CatEdit extends Component {
             <Input
               type="number"
               name="age"
+              min="1"
               onChange={this.handleChange}
-              value={this.state.updateCat.age}
+              value={updateCat.age}
             />
           </FormGroup>
           <FormGroup>
@@ -60,23 +79,28 @@ export default class CatEdit extends Component {
               type="text"
               name="enjoys"
               onChange={this.handleChange}
-              value={this.state.updateCat.enjoys}
+              value={updateCat.enjoys}
             />
           </FormGroup>
           <FormGroup>
-            <Label for="image">Picture</Label>
+            <Label for="image">Image Link</Label>
             <Input
               type="text"
               name="image"
               onChange={this.handleChange}
-              value={this.state.updateCat.image}
+              value={updateCat.image}
             />
           </FormGroup>
-          <Button name="submit" onClick={this.handleSubmit}>
-            Edit Cat Profile
-          </Button>
-          {this.state.submitted && <Redirect to={`/catshow/${cat.id}`} />}
         </Form>
+        <div className="edit-buttons">
+          <Button name="submit" onClick={this.handleSubmit}>
+            Update Profile
+          </Button>
+          <Button name="submit" onClick={this.handleBack}>
+            Back
+          </Button>
+        </div>
+        {submitted && <Redirect to={`/catshow/${cat.id}`} />}
       </section>
     );
   }

@@ -19,29 +19,42 @@ export default class CatNew extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target.value);
-    let { newCat } = this.state;
+    const { newCat } = this.state;
     newCat[e.target.name] = e.target.value;
     this.setState({ newCat: newCat });
   };
 
   handleSubmit = () => {
-    this.props.createCat(this.state.newCat);
-    this.setState({ submitted: true });
+    const { newCat } = this.state;
+    const filledOut = Object.values(newCat).every((value) => {
+      return value;
+    });
+    if (filledOut && newCat.age > 0 && newCat.enjoys.length >= 10) {
+      this.props.createCat(newCat);
+      this.setState({ submitted: true });
+    } else if (newCat.age < 1) {
+      alert("Age has to be 1 or older");
+    } else if (newCat.enjoys.length < 10) {
+      alert("Hobbies must be more than 10 or more characters");
+    } else {
+      alert("Please fill out all fields");
+    }
   };
 
   render() {
+    const { newCat, submitted } = this.state;
     return (
       <section>
         <h2>Create A New Cat Profile</h2>
-        <Form>
+        <br />
+        <Form className="Form">
           <FormGroup>
             <Label for="name">Cat Name</Label>
             <Input
               type="text"
               name="name"
               onChange={this.handleChange}
-              value={this.state.newCat.name}
+              value={newCat.name}
             />
           </FormGroup>
           <FormGroup>
@@ -49,8 +62,9 @@ export default class CatNew extends Component {
             <Input
               type="number"
               name="age"
+              min="1"
               onChange={this.handleChange}
-              value={this.state.newCat.age}
+              value={newCat.age}
             />
           </FormGroup>
           <FormGroup>
@@ -59,22 +73,22 @@ export default class CatNew extends Component {
               type="text"
               name="enjoys"
               onChange={this.handleChange}
-              value={this.state.newCat.enjoys}
+              value={newCat.enjoys}
             />
           </FormGroup>
           <FormGroup>
-            <Label for="image">Picture</Label>
+            <Label for="image">Image Link</Label>
             <Input
               type="text"
               name="image"
               onChange={this.handleChange}
-              value={this.state.newCat.image}
+              value={newCat.image}
             />
           </FormGroup>
           <Button name="submit" onClick={this.handleSubmit}>
             pet me
           </Button>
-          {this.state.submitted && <Redirect to="/catindex" />}
+          {submitted && <Redirect to="/catindex" />}
         </Form>
       </section>
     );

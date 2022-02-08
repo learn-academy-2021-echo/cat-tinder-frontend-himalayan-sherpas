@@ -564,3 +564,98 @@ describe("When catNew renders", () => {
 });
 
 ```
+
+# Fetch
+
+## Fetch for Read
+
+### As a developer, I can get the cats from the database and set the array in state.
+
+### As a user, I can see all the cats.
+
+### As a user, I can see the information for just one cat.
+
+```javascript
+componentDidMount() {
+  this.readCat();
+}
+
+readCat = () => {
+  fetch("http://localhost:3000/cats")
+    .then((response) => response.json())
+    .then((catsArray) => this.setState({ cats: catsArray }))
+    .catch((errors) => console.log("Cat read errors:", errors));
+};
+```
+
+## Fetch for Create
+
+### As a developer, I can update the `createNewCat` method to post information to the database.
+
+### As a user, I can create a new cat.
+
+### As a user, I can see my new cat in the cat list.
+
+```javascript
+createCat = (newCat) => {
+  fetch("http://localhost:3000/cats", {
+    body: JSON.stringify(newCat),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+  })
+    .then((response) => response.json())
+    .then(() => this.readCat())
+    .catch((errors) => console.log("Cat create errors:", errors));
+};
+```
+
+## Fetch for Update (STRETCH)
+
+### As a developer, I can update the `updateCat` method to update information in the database.
+
+### As a user, I can update an existing cat.
+
+### As a user, I can see the information for my updated cat.
+
+```javascript
+updateCat = (updateCat, id) => {
+  fetch(`http://localhost:3000/cats/${id}`, {
+    body: JSON.stringify(updateCat),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "PATCH",
+  })
+    .then((response) => response.json())
+    .then(() => this.readCat())
+    .catch((errors) => console.log("Cat update errors:", errors));
+};
+```
+
+## Fetch for Delete (STRETCH)
+
+### As a developer, I can create a `deleteCat` method that will remove a cat from the database.
+
+### As a developer, I can pass the method to the CatShow component.
+
+### As a user, I can navigate to the page of one specific cat and see a delete button.
+
+### As a user, I can click the button remove the cat.
+
+### As a user, I can be rerouted to the CatIndex page after the cat is removed.
+
+```javascript
+deleteCat = (id) => {
+  fetch(`http://localhost:3000/cats/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "DELETE",
+  })
+    .then((response) => response.json())
+    .then(() => this.readCat())
+    .catch((errors) => console.log("Cat update errors:", errors));
+};
+```

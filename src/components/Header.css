@@ -12,7 +12,26 @@
   position: fixed;
 }
 
+.NavBar__Logo {
+  display: flex;
+  align-items: center;
+}
+
+.NavBar__Logo__Text {
+  font-size: 52px;
+  font-family: "Lobster";
+}
+
 .NavBar__Links {
   display: flex;
   gap: 20px;
+}
+
+@media (max-width: 540px) {
+  .NavBar__Logo__Text {
+    display: none;
+  }
+  .NavBar {
+    padding: 5px 18px 0 18px;
+  }
 }

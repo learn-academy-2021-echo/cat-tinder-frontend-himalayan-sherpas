@@ -7,6 +7,10 @@
   --header-font: Arial;
 }
 
+* {
+  font-family: "Ubuntu";
+}
+
 section {
   display: flex;
   flex-direction: column;
@@ -15,7 +19,9 @@ section {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: xx-large;
-  color: var(--background);
+form {
+  width: 300px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
 }

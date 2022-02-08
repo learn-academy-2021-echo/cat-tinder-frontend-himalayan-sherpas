@@ -7,7 +7,23 @@ export default class Footer extends Component {
     return (
       <footer className="Footer">
         <h5>Coded by The Himalayan Sherpas</h5>
-        <p><a href="https://www.linkedin.com/in/robert-calpito/" target="_blank">Robert Calpito</a> | <a href="https://www.linkedin.com/in/kirkkwang/" target="_blank">Kirk Wang</a></p>
+        <p>
+          <a
+            href="https://www.linkedin.com/in/robert-calpito/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Robert Calpito
+          </a>{" "}
+          |{" "}
+          <a
+            href="https://www.linkedin.com/in/kirkkwang/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Kirk Wang
+          </a>
+        </p>
       </footer>
     );
   }
