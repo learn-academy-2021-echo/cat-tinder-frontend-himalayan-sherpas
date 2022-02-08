@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { Form, FormGroup, Input, Label, Button } from "reactstrap";
+import { Form, FormGroup, Input, Label, Button, NavLink } from "reactstrap";
 import "./CatEdit.css";
 import "../App.css";
 
@@ -27,6 +27,10 @@ export default class CatEdit extends Component {
 
   handleSubmit = () => {
     this.props.updateCat(this.state.updateCat, this.props.cat.id);
+    this.setState({ submitted: true });
+  };
+
+  handleBack = () => {
     this.setState({ submitted: true });
   };
 
@@ -72,11 +76,16 @@ export default class CatEdit extends Component {
               value={this.state.updateCat.image}
             />
           </FormGroup>
-          <Button name="submit" onClick={this.handleSubmit}>
-            Edit Cat Profile
-          </Button>
-          {this.state.submitted && <Redirect to={`/catshow/${cat.id}`} />}
         </Form>
+        <div className="edit-buttons">
+          <Button name="submit" onClick={this.handleSubmit}>
+            Update Profile
+          </Button>
+          <Button name="submit" onClick={this.handleBack}>
+            Back
+          </Button>
+        </div>
+        {this.state.submitted && <Redirect to={`/catshow/${cat.id}`} />}
       </section>
     );
   }

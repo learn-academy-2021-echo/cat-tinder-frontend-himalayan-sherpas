@@ -25,3 +25,12 @@
   display: flex;
   gap: 20px;
 }
+
+@media (max-width: 540px) {
+  .NavBar__Logo__Text {
+    display: none;
+  }
+  .NavBar {
+    padding: 5px 18px 0 18px;
+  }
+}
