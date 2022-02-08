@@ -48,6 +48,7 @@ export default class CatNew extends Component {
             <Label for="age">Age</Label>
             <Input
               type="number"
+              min="0"
               name="age"
               onChange={this.handleChange}
               value={this.state.newCat.age}

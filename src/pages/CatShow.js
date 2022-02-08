@@ -5,6 +5,17 @@ import { Button } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
 export default class CatShow extends Component {
+  handleSubmit = () => {
+    if (
+      window.confirm("Are you sure you want to delete this profile?") === true
+    ) {
+      this.props.deleteCat(this.props.cat.id);
+      this.setState({ submitted: false });
+    } else {
+      this.setState({ submitted: false });
+    }
+  };
+
   render() {
     const { cat } = this.props;
     return (
@@ -23,6 +34,9 @@ export default class CatShow extends Component {
             <div className="Profile__Buttons">
               <NavLink to="/catindex">
                 <Button>Back</Button>
+              </NavLink>
+              <NavLink to="/catindex">
+                <Button onClick={this.handleSubmit}>Delete Cat Profile</Button>
               </NavLink>
               <NavLink to={`/catedit/${this.props.cat.id}`}>
                 <Button>Edit Cat Profile</Button>

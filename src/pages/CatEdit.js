@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { Form, FormGroup, Input, Label, Button, NavLink } from "reactstrap";
+import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 import "./CatEdit.css";
 import "../App.css";
 

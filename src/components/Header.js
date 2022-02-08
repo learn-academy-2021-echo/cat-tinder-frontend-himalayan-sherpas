@@ -17,16 +17,10 @@ export default class Header extends Component {
         </NavLink>
         <div className="NavBar__Links">
           <NavLink to="/catindex" style={style}>
-            <h5>Matched Cats</h5>
+            <h5>Our Cats</h5>
           </NavLink>
           <NavLink to="/catnew" style={style}>
             <h5>Add A Cat</h5>
-          </NavLink>
-          <NavLink to="/" style={style}>
-            <h5>Link 3</h5>
-          </NavLink>
-          <NavLink to="/" style={style}>
-            <h5>Link 4</h5>
           </NavLink>
         </div>
       </nav>
